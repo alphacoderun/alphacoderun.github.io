@@ -1,0 +1,321 @@
+:root {
+    --primary: #FF6B6B;
+    --secondary: #4ECDC4;
+    --accent: #FFE66D;
+    --dark: #2F2E41;
+    --light: #F7FFF7;
+    --success: #2ecc71;
+    --error: #e74c3c;
+    --font-heading: 'Fredoka One', cursive;
+    --font-body: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--secondary);
+    background-image: radial-gradient(circle at 50% 50%, #4ECDC4 0%, #1A535C 100%);
+    color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    background: var(--light);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    min-height: 80vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.screen.active {
+    display: flex;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.mascot-img, .star-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Setup Screen */
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.table-btn {
+    background: #E0E0E0;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.table-btn.selected {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+}
+
+.settings {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.settings input {
+    width: 80px;
+    padding: 10px;
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: var(--font-heading);
+}
+
+.btn {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: var(--dark);
+}
+
+.btn.primary:hover {
+    background: #ffd93d;
+}
+
+.btn.secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn.secondary:hover {
+    background: #3eb5ad;
+}
+
+/* Game Screen */
+.top-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background: #E0E0E0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--success);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#progress-text {
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+.question-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    color: var(--dark);
+    margin-bottom: 2rem;
+}
+
+.answer-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+#answer-input {
+    width: 150px;
+    font-size: 2.5rem;
+    text-align: center;
+    border: 3px solid var(--secondary);
+    border-radius: 15px;
+    padding: 10px;
+    font-family: var(--font-heading);
+    outline: none;
+}
+
+#answer-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.feedback {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.feedback.correct {
+    background: #d4edda;
+    color: #155724;
+}
+
+.feedback.incorrect {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Result Screen */
+.score-board {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#score-percentage {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--dark);
+}
+
+.incorrect-review {
+    background: #fff3f3;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #ffcaca;
+}
+
+.incorrect-review h3 {
+    color: var(--error);
+    margin-bottom: 1rem;
+}
+
+#incorrect-list {
+    list-style: none;
+    text-align: left;
+}
+
+#incorrect-list li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #ffcaca;
+}
+
+#incorrect-list li:last-child {
+    border-bottom: none;
+}
+
+.correct-ans {
+    color: var(--success);
+    font-weight: bold;
+}
+.wrong-ans {
+    color: var(--error);
+    text-decoration: line-through;
+    margin-left: 10px;
+}
