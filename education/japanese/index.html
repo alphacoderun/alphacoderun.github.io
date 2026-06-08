@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Vocabulary Flashcards</title>
+    <meta name="description" content="Learn Japanese vocabulary with interactive flashcards.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Japanese Flashcards</h1>
+            <p>Master your vocabulary</p>
+        </header>
+
+        <div class="controls">
+            <div class="mode-toggle">
+                <input type="radio" id="mode-sequential" name="play-mode" value="sequential" checked>
+                <label for="mode-sequential">Sequential</label>
+                
+                <input type="radio" id="mode-random" name="play-mode" value="random">
+                <label for="mode-random">Random</label>
+            </div>
+            <div class="progress" id="progress-text">1 / 27</div>
+        </div>
+
+        <div class="flashcard-container">
+            <button class="nav-button prev-button" id="prev-btn" aria-label="Previous Card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+
+            <div class="scene scene--card">
+                <div class="card" id="flashcard">
+                    <div class="card__face card__face--front">
+                        <div class="card-content">
+                            <span class="language-label">English</span>
+                            <h2 id="english-word">Loading...</h2>
+                            <p class="hint">Click to flip</p>
+                        </div>
+                    </div>
+                    <div class="card__face card__face--back">
+                        <div class="card-content">
+                            <span class="language-label">Japanese</span>
+                            <h2 id="hiragana-word" class="japanese-text">...</h2>
+                            <h3 id="romaji-word" class="romaji-text">...</h3>
+                            
+                            <button class="audio-button" id="audio-btn" aria-label="Play Audio">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="nav-button next-button" id="next-btn" aria-label="Next Card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
