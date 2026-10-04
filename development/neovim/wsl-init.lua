@@ -1,22 +1,3 @@
-# init lua config
-
-git clone https://codeberg.org/mfussenegger/nvim-dap.git ~/.config/nvim/pack/plugins/start/nvim-dap
-
-git clone https://github.com/nvim-neotest/nvim-nio.git ~/.config/nvim/pack/plugins/start/nvim-nio
-
-
-git clone https://github.com/rcarriga/nvim-dap-ui.git ~/.config/nvim/pack/plugins/start/nvim-dap-ui
-
-git clone https://github.com/theHamsta/nvim-dap-virtual-text.git ~/.config/nvim/pack/plugins/start/nvim-dap-virtual-text
-
-git clone https://github.com/leoluz/nvim-dap-go.git ~/.config/nvim/pack/plugins/start/nvim-dap-go
-
-git clone https://github.com/mfussenegger/nvim-dap-python.git  ~/.config/nvim/pack/plugins/start/nvim-dap-python
-
-?? go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-go install github.com/nametake/golangci-lint-langserver@latest
-
-```
 vim.g.mapleader = " "
 
 vim.lsp.enable('pyright')
@@ -84,4 +65,4 @@ require('dap-go').setup()
 local python_path = vim.fn.exepath("python3") or vim.fn.exepath("python")
 require("dap-python").setup(python_path)
 
-```
+
