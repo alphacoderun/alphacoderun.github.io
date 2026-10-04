@@ -1,6 +1,22 @@
 # init lua config
 
+git clone https://codeberg.org/mfussenegger/nvim-dap.git ~/.config/nvim/pack/plugins/start/nvim-dap
+
+git clone https://github.com/nvim-neotest/nvim-nio.git ~/.config/nvim/pack/plugins/start/nvim-nio
+
+
+git clone https://github.com/rcarriga/nvim-dap-ui.git ~/.config/nvim/pack/plugins/start/nvim-dap-ui
+
+git clone https://github.com/theHamsta/nvim-dap-virtual-text.git ~/.config/nvim/pack/plugins/start/nvim-dap-virtual-text
+
+git clone https://github.com/leoluz/nvim-dap-go.git ~/.config/nvim/pack/plugins/start/nvim-dap-go
+
+git clone https://github.com/mfussenegger/nvim-dap-python.git  ~/.config/nvim/pack/plugins/start/nvim-dap-python
+
+
 ```
+vim.g.mapleader = " "
+
 vim.lsp.enable('pyright')
 vim.lsp.enable('gopls')
 vim.lsp.enable('html')
@@ -28,4 +44,42 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end
         end,
 })
+
+vim.cmd('packadd nvim-dap')
+vim.cmd('packadd nvim-nio')
+vim.cmd('packadd nvim-dap-ui')
+vim.cmd('packadd nvim-dap-virtual-text')
+
+local dap = require("dap")
+local dapui = require("dapui")
+
+-- Setup UI and virtual text
+dapui.setup()
+require("nvim-dap-virtual-text").setup()
+
+-- Automatically open/close DAP UI on events
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+
+
+vim.keymap.set('n', '<leader>db', function() dap.toggle_breakpoint() end, { desc = 'Toggle [D]ebug [B]reakpoint' })
+vim.keymap.set('n', '<leader>dc', function() dap.continue() end, { desc = 'Debug [C]ontinue / Start' })
+vim.keymap.set('n', '<leader>so', function() dap.step_over() end, { desc = 'Debug Step [O]ver' })
+vim.keymap.set('n', '<leader>si', function() dap.step_into() end, { desc = 'Debug Step [I]nto' })
+vim.keymap.set('n', '<leader>su', function() dap.step_out() end, { desc = 'Debug Step o[U]t' })
+vim.keymap.set('n', '<leader>dr', function() dap.repl.toggle() end, { desc = 'Toggle Debug [R]EPL' })
+
+require('dap-go').setup()
+
+
+local python_path = vim.fn.exepath("python3") or vim.fn.exepath("python")
+require("dap-python").setup(python_path)
+
 ```
