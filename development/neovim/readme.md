@@ -13,8 +13,12 @@ git clone https://github.com/leoluz/nvim-dap-go.git ~/.config/nvim/pack/plugins/
 
 git clone https://github.com/mfussenegger/nvim-dap-python.git  ~/.config/nvim/pack/plugins/start/nvim-dap-python
 
+.config/nvim/pack/nvim/start/nvim-lspconfig
+
 ?? go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 go install github.com/nametake/golangci-lint-langserver@latest
+
+pip install debugpy
 
 ```
 vim.g.mapleader = " "
